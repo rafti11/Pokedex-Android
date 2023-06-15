@@ -1,6 +1,6 @@
 package com.example.pokedexapp.data.repository
 
-import com.example.pokedexapp.data.remote.dto.PokedexApi
+import com.example.pokedexapp.data.remote.PokedexApi
 import com.example.pokedexapp.data.remote.dto.PokedexDTO
 import com.example.pokedexapp.domain.repository.PokedexRepository
 import javax.inject.Inject

@@ -9,10 +9,10 @@ data class PokedexDTO(
 )
 
 fun PokedexDTO.toPokedex() : List<Pokedex>{
-    val national: ArrayList<Pokedex> = ArrayList()
+    val data: ArrayList<Pokedex> = ArrayList()
     entries.map {
         val sprite = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${it.id}.png"
-        national.add(Pokedex(it.id, it.pokemonSpecies.name, sprite))
+        data.add(Pokedex(it.id, it.pokemonSpecies.name, sprite))
     }
-    return national.toList()
+    return data.toList()
 }
