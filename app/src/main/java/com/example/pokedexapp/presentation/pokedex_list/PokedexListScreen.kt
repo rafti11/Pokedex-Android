@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.pokedexapp.presentation.pokedex_list.components.PokedexEntryItem
+import com.example.pokedexapp.presentation.pokedex_list.components.PokedexEntryItem2
 
 @Composable
 fun PokedexListScreen(
@@ -21,7 +22,7 @@ fun PokedexListScreen(
         LazyColumn(modifier = Modifier.fillMaxSize()) {
             items(state.pokedex){
                 println(it)
-                PokedexEntryItem(pokedex = it)
+                PokedexEntryItem2(pokedex = it)
             }
         }
 
