@@ -164,7 +164,7 @@ fun PokedexEntryItem2(pokedex: Pokedex) {
                     )
             )
             Text(
-                text = pokedex.name,
+                text = pokedex.name.uppercase(),
                 textAlign = TextAlign.Center,
                 fontSize = 30.sp,
                 fontWeight = FontWeight.SemiBold,
