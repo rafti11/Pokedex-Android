@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class PokedexListViewModel @Inject constructor(
-    private val getPokedexNationalUseCase: GetPokedexNationalUseCase
+private val getPokedexNationalUseCase: GetPokedexNationalUseCase
 ): ViewModel() {
 
 

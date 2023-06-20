@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Text
@@ -22,6 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -31,7 +33,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.example.pokedexapp.R
+import com.example.pokedexapp.common.Tools
 import com.example.pokedexapp.domain.model.Pokedex
+import com.example.pokedexapp.domain.model.PokedexEntry
 
 //@Composable
 //fun PokedexEntryItem(pokedex: Pokedex) {
@@ -70,8 +74,8 @@ fun PokedexEntryItem() {
 
         Column(
             modifier = Modifier
-            .background(Color.Green)
-            .fillMaxSize(),
+                .background(Color.Green)
+                .fillMaxSize(),
             verticalArrangement = Arrangement.SpaceBetween
         ) {
 
@@ -117,7 +121,7 @@ fun PokedexEntryItem() {
 }
 
 @Composable
-fun PokedexEntryItem2(pokedex: Pokedex) {
+fun PokedexEntryItem2(pokedex: PokedexEntry) {
 
     Row(
         modifier = Modifier
@@ -127,7 +131,7 @@ fun PokedexEntryItem2(pokedex: Pokedex) {
 //        horizontalArrangement = Arrangement.SpaceBetween
     ) {
         AsyncImage(
-            model = pokedex.sprite,
+            model = pokedex.image,
             contentDescription = null,
             modifier = Modifier.background(Color.White)
         )
@@ -140,7 +144,7 @@ fun PokedexEntryItem2(pokedex: Pokedex) {
 
         Column(
             modifier = Modifier
-                .background(Color.Green)
+                .background(colorResource(id = Tools().getColorFromPokemonType(pokedex.types[0])))
                 .fillMaxSize(),
             verticalArrangement = Arrangement.SpaceBetween
         ) {
@@ -171,15 +175,18 @@ fun PokedexEntryItem2(pokedex: Pokedex) {
                 modifier = Modifier.fillMaxWidth()
             )
 
-            Row(modifier = Modifier
+            LazyRow(modifier = Modifier
                 .fillMaxWidth()
                 .padding(start = 50.dp, end = 50.dp)
                 .background(Color.Red),
                 horizontalArrangement = Arrangement.SpaceBetween) {
 
-                Text(text = "grass")
+                items(pokedex.types.size){
 
-                Text(text = "poison")
+                    Text(text = pokedex.types[it])
+                }
+
+
             }
 
         }
