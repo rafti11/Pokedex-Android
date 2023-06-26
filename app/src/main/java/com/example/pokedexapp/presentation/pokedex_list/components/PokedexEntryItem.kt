@@ -4,6 +4,7 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -45,12 +46,13 @@ import com.example.pokedexapp.domain.model.PokedexEntry
 import com.example.pokedexapp.domain.model.Pokemon
 
 @Composable
-fun PokedexEntryItem(pokedexEntry: PokedexEntry) {
+fun PokedexEntryItem(pokedexEntry: PokedexEntry, itemClick: (PokedexEntry) -> Unit) {
 
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .height(120.dp),
+            .height(120.dp)
+            .clickable { itemClick(pokedexEntry) },
         border = BorderStroke(1.dp, Color.Black)
     ) {
         Row {
@@ -147,5 +149,5 @@ fun PrevPara() {
         types = listOf("fire")
     )
 
-    PokedexEntryItem(pokedex)
+    PokedexEntryItem(pokedex, itemClick = {})
 }

@@ -40,4 +40,8 @@ class Tools {
             else -> {R.color.white}
         }
     }
+
+    fun intToFloatPercent(number: Int) : Float {
+        return number.toFloat() / 100
+    }
 }

@@ -7,7 +7,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.example.pokedexapp.presentation.Screen
 import com.example.pokedexapp.presentation.pokedex_list.PokedexListScreen
+import com.example.pokedexapp.presentation.pokedex_pokemon_details.PokedexPokemonDetailScreen
 import com.example.pokedexapp.presentation.ui.theme.PokedexAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -22,7 +27,27 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    PokedexListScreen()
+//                    PokedexListScreen()
+//                    PreviewPK()
+
+                    val navController = rememberNavController()
+
+                    NavHost(
+                        navController = navController,
+                        startDestination = Screen.PokedexListScreen.route
+                    ) {
+                        composable(
+                            route = Screen.PokedexListScreen.route
+                        ){
+                            PokedexListScreen(navController = navController)
+                        }
+
+                        composable(
+                            route = Screen.PokemonDetailsScreen.route + "/{pokemonID}"
+                        ){
+                            PokedexPokemonDetailScreen()
+                        }
+                    }
                 }
             }
         }

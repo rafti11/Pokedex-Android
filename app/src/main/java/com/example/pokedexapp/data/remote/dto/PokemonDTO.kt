@@ -4,6 +4,7 @@ import androidx.compose.ui.text.capitalize
 import androidx.compose.ui.text.toUpperCase
 import com.example.pokedexapp.common.Tools
 import com.example.pokedexapp.domain.model.Pokemon
+import com.example.pokedexapp.domain.model.Stats
 import com.google.gson.annotations.SerializedName
 
 data class PokemonDTO(
@@ -49,6 +50,29 @@ fun PokemonDTO.toPokemon() : Pokemon {
         image = Tools().getImageFromID(id),
         types = types.map {
             it.typeDetails.name
-        }
+        },
+        stats = pokemonDTOStatsToStats(stats)
     )
+}
+
+private fun pokemonDTOStatsToStats(data: List<Stat>) : Stats {
+    var hp = 0
+    var attack = 0
+    var defense = 0
+    var spAtk = 0
+    var spDef = 0
+    var speed = 0
+
+    data.map {
+        when(it.statDetails.name) {
+            "hp" -> hp = it.baseStat
+            "attack" -> attack = it.baseStat
+            "defense" -> defense = it.baseStat
+            "special-attack" -> spAtk = it.baseStat
+            "special-defense" -> spDef = it.baseStat
+            "speed" -> speed = it.baseStat
+        }
+    }
+
+    return Stats(hp = hp, attack = attack, defense = defense, spAtk = spAtk, spDef = spDef, speed = speed)
 }

@@ -10,11 +10,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
+import com.example.pokedexapp.presentation.Screen
 import com.example.pokedexapp.presentation.pokedex_list.components.PokedexEntryItem
 
 
 @Composable
 fun PokedexListScreen(
+    navController: NavController,
     viewModel: PokedexListViewModel = hiltViewModel()
 ) {
 
@@ -28,7 +31,11 @@ fun PokedexListScreen(
         ) {
             items(state.pokedex){
                 println(it)
-                PokedexEntryItem(pokedexEntry = it)
+                PokedexEntryItem(
+                    pokedexEntry = it,
+                    itemClick = { pk ->
+                        navController.navigate(Screen.PokemonDetailsScreen.route + "/${pk.id}")
+                })
             }
         }
 
