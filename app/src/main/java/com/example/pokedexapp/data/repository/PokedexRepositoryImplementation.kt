@@ -1,6 +1,7 @@
 package com.example.pokedexapp.data.repository
 
 import com.example.pokedexapp.data.remote.PokedexApi
+import com.example.pokedexapp.data.remote.dto.EvolutionChainDTO
 import com.example.pokedexapp.data.remote.dto.PokedexDTO
 import com.example.pokedexapp.data.remote.dto.PokemonDTO
 import com.example.pokedexapp.domain.repository.PokedexRepository
@@ -16,6 +17,10 @@ class PokedexRepositoryImplementation @Inject constructor(
 
     override suspend fun getPokemonByID(id: Int): PokemonDTO {
         return api.getPokemonByID(id)
+    }
+
+    override suspend fun getEvolutionChainByID(id: Int): EvolutionChainDTO {
+        return api.getEvolutionChainByID(id)
     }
 
 }
